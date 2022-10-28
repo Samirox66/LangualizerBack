@@ -4,6 +4,7 @@ import com.example.LangualizerBack.entity.DeckEntity;
 import com.example.LangualizerBack.model.Deck;
 import com.example.LangualizerBack.service.DeckService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,4 +37,23 @@ public class DeckController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+
+    @PutMapping("/publish/{email}/{deckName}")
+    ResponseEntity publishDeck(@PathVariable String email, @PathVariable String deckName) {
+        try {
+            return ResponseEntity.ok("Deck was published " + deckName);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @GetMapping("/sharedDecks")
+    ResponseEntity getPublishedDecks() {
+        try {
+            return ResponseEntity.ok("Published decks");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
 }

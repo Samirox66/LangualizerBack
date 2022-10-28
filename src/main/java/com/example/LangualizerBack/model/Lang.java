@@ -4,14 +4,11 @@ public class Lang {
     private String language;
     private String text;
 
-    private Integer key;
-
     Lang() {}
 
-    Lang(String language, String text, Integer key) {
+    Lang(String language, String text) {
         this.language = language;
         this.text = text;
-        this.key = key;
     }
 
     public String getLanguage() {
@@ -22,10 +19,6 @@ public class Lang {
         return text;
     }
 
-    public Integer getKey() {
-        return key;
-    }
-
     public void setLanguage(String language) {
         this.language = language;
     }
@@ -34,7 +27,4 @@ public class Lang {
         this.text = text;
     }
 
-    public void setKey(Integer key) {
-        this.key = key;
-    }
 }
