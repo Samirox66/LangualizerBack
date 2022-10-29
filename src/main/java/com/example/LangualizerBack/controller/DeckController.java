@@ -41,7 +41,8 @@ public class DeckController {
     @PutMapping("/publish/{email}/{deckName}")
     ResponseEntity publishDeck(@PathVariable String email, @PathVariable String deckName) {
         try {
-            return ResponseEntity.ok("Deck was published " + deckName);
+            deckService.publishDeck(email, deckName);
+            return ResponseEntity.ok("Deck " + deckName + " was published");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
@@ -50,7 +51,8 @@ public class DeckController {
     @GetMapping("/sharedDecks")
     ResponseEntity getPublishedDecks() {
         try {
-            return ResponseEntity.ok("Published decks");
+            ArrayList<DeckEntity> publishedDecks = deckService.getPublishedDecks();
+            return ResponseEntity.ok(publishedDecks);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }

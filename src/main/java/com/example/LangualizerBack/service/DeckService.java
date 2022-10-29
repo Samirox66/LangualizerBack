@@ -19,13 +19,30 @@ public class DeckService {
     }
 
     public void save(ArrayList<DeckEntity> deckEntities) {
-        ArrayList<DeckEntity> userDecks = deckRepository.findAllByEmail(deckEntities.get(0).getEmail());
+        String email = deckEntities.get(0).getEmail();
         for (DeckEntity deck : deckEntities) {
-            DeckEntity tmp = deckRepository.findByName(deck.getName());
+            DeckEntity tmp = deckRepository.findByEmailAndName(email, deck.getName());
             if (tmp != null) {
                 deckRepository.deleteById(tmp.getId());
             }
             deckRepository.save(deck);
         }
+    }
+
+    public void publishDeck(String email, String deckName) throws Exception {
+        DeckEntity publishingDeck = deckRepository.findByEmailAndName(email, deckName);
+        if (publishingDeck == null) {
+            throw new Exception("No such deck");
+        }
+        if (publishingDeck.getPublished()) {
+            throw new Exception("Deck has already been published");
+        }
+        publishingDeck.setPublished(true);
+        deckRepository.deleteById(publishingDeck.getId());
+        deckRepository.save(publishingDeck);
+    }
+
+    public ArrayList<DeckEntity> getPublishedDecks() {
+        return deckRepository.findAllByPublished(true);
     }
 }
