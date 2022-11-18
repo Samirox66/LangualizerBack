@@ -22,9 +22,6 @@ public class DeckService {
         String email = deckEntities.get(0).getEmail();
         for (DeckEntity deck : deckEntities) {
             DeckEntity tmp = deckRepository.findByEmailAndName(email, deck.getName());
-            if (tmp != null) {
-                deckRepository.deleteById(tmp.getId());
-            }
             deckRepository.save(deck);
         }
     }
@@ -38,7 +35,6 @@ public class DeckService {
             throw new Exception("Deck has already been published");
         }
         publishingDeck.setPublished(true);
-        deckRepository.deleteById(publishingDeck.getId());
         deckRepository.save(publishingDeck);
     }
 

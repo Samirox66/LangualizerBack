@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public class Deck {
     private ArrayList<ArrayList<Lang>> phrases;
 
+    private String id;
+
     private String name;
 
     private Boolean published;
@@ -23,6 +25,14 @@ public class Deck {
         this.name = name;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void setPublished(Boolean published) {
         this.published = published;
     }
@@ -37,16 +47,17 @@ public class Deck {
 
     public Deck() {}
 
-    public Deck(ArrayList<ArrayList<Lang>> phrases, String name, Boolean published) {
+    public Deck(ArrayList<ArrayList<Lang>> phrases, String name, Boolean published, String id) {
         this.phrases = phrases;
         this.name = name;
         this.published = published;
+        this.id = id;
     }
 
     public static ArrayList<Deck> toModel(ArrayList<DeckEntity> deckEntities) {
         ArrayList<Deck> decks = new ArrayList<>();
         for (DeckEntity deck : deckEntities) {
-            decks.add(new Deck(deck.getPhrases(), deck.getName(), deck.getPublished()));
+            decks.add(new Deck(deck.getPhrases(), deck.getName(), deck.getPublished(), deck.getId()));
         }
 
         return decks;
