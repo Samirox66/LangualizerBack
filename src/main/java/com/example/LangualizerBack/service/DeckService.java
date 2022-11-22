@@ -38,6 +38,14 @@ public class DeckService {
         deckRepository.save(publishingDeck);
     }
 
+    public void deleteDeck(String email, String deckName) throws Exception {
+        DeckEntity deletingDeck = deckRepository.findByEmailAndName(email, deckName);
+        if (deletingDeck == null) {
+            throw new Exception("No such deck");
+        }
+        deckRepository.deleteById(deletingDeck.getId());
+    }
+
     public ArrayList<DeckEntity> getPublishedDecks() {
         return deckRepository.findAllByPublished(true);
     }
