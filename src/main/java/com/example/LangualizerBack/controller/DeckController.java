@@ -3,9 +3,7 @@ package com.example.LangualizerBack.controller;
 import com.example.LangualizerBack.entity.DeckEntity;
 import com.example.LangualizerBack.model.Deck;
 import com.example.LangualizerBack.service.DeckService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
