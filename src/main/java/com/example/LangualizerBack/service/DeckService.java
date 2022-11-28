@@ -18,12 +18,17 @@ public class DeckService {
         return Deck.toModel(decks);
     }
 
-    public void save(ArrayList<DeckEntity> deckEntities) {
+    public void saveDecks(ArrayList<DeckEntity> deckEntities) {
         String email = deckEntities.get(0).getEmail();
         for (DeckEntity deck : deckEntities) {
             DeckEntity tmp = deckRepository.findByEmailAndName(email, deck.getName());
             deckRepository.save(deck);
         }
+    }
+
+    public String saveDeck(DeckEntity deckEntity) {
+        deckRepository.save(deckEntity);
+        return deckEntity.getId();
     }
 
     public void publishDeck(String email, String deckName) throws Exception {

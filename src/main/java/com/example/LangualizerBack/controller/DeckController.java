@@ -30,8 +30,18 @@ public class DeckController {
     @PostMapping("/save")
     ResponseEntity saveDecks(@RequestBody ArrayList<DeckEntity> deckEntities) {
         try {
-            deckService.save(deckEntities);
+            deckService.saveDecks(deckEntities);
             return ResponseEntity.ok("Decks were saved");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+    }
+
+    @PostMapping("/save/deck")
+    ResponseEntity saveDeck(@RequestBody DeckEntity deckEntity) {
+        try {
+            String id = deckService.saveDeck(deckEntity);
+            return ResponseEntity.ok(id);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
