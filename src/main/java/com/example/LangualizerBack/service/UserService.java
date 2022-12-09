@@ -16,7 +16,7 @@ public class UserService {
 
     public UserEntity registration(UserEntity user) throws UserAlreadyExistException {
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new UserAlreadyExistException("User with this email have already registered");
+            throw new UserAlreadyExistException("User with this email have already been registered");
         }
         return userRepository.save(user);
     }

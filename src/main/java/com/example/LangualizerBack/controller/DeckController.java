@@ -27,7 +27,7 @@ public class DeckController {
         }
     }
 
-    @PostMapping("/save")
+    @PutMapping("/update")
     ResponseEntity saveDecks(@RequestBody ArrayList<DeckEntity> deckEntities) {
         try {
             deckService.saveDecks(deckEntities);

@@ -19,9 +19,9 @@ public class DeckService {
     }
 
     public void saveDecks(ArrayList<DeckEntity> deckEntities) {
-        String email = deckEntities.get(0).getEmail();
+        //String email = deckEntities.get(0).getEmail();
         for (DeckEntity deck : deckEntities) {
-            DeckEntity tmp = deckRepository.findByEmailAndName(email, deck.getName());
+            //DeckEntity tmp = deckRepository.findByEmailAndName(email, deck.getName());
             deckRepository.save(deck);
         }
     }

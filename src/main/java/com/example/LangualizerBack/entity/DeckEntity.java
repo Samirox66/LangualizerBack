@@ -15,9 +15,9 @@ public class DeckEntity {
 
     private String email;
 
-    public Boolean published;
+    private Boolean published;
 
-    public String description;
+    private String description;
 
     private ArrayList<ArrayList<Lang>> phrases;
 

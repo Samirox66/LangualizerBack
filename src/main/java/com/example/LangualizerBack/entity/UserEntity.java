@@ -3,15 +3,11 @@ package com.example.LangualizerBack.entity;
 import org.springframework.data.annotation.Id;
 
 public class UserEntity {
-
     @Id
     private String id;
-
     private String email;
-
     private String password;
     private String username;
-
     public String getId() {
         return id;
     }
